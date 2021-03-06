@@ -28,11 +28,10 @@ function Bio() {
               }}
             />
             <p>
-              Written by <strong>{author}</strong> who lives and works in
-              Minneapolis building silly things.
+              Written by <strong>{author}</strong>
               {` `}
               <a href={`https://twitter.com/${social.twitter}`}>
-                You should follow him on Twitter
+                @euro_s
               </a>
             </p>
           </div>

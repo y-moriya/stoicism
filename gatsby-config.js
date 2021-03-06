@@ -1,11 +1,11 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog MDX`,
-    author: `Matt Hagner`,
-    description: `An extension of the gatsby starter blog, with support for MDX`,
-    siteUrl: `https://gatsby-starter-blog-mdx-demo.netlify.com/`,
+    title: `Stoicism`,
+    author: `ゆーろ`,
+    description: `なんかしらの日記のようなものを綴るブログ`,
+    siteUrl: `https://stoicism.gunjobiyori.com/`,
     social: {
-      twitter: `mattinthecouch`,
+      twitter: `euro_s`,
     },
   },
   plugins: [
@@ -15,6 +15,20 @@ module.exports = {
         path: `${__dirname}/content/blog`,
         name: `blog`,
       },
+    },
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-external-links`,
+            options: {
+              target: `_blank`,
+              rel: `noopener`,
+            },
+          },
+        ]
+      }
     },
     {
       resolve: `gatsby-source-filesystem`,
@@ -117,7 +131,7 @@ module.exports = {
             }
             `,
             output: '/rss.xml',
-            title: 'Gatsby RSS feed',
+            title: 'Stoicism',
           },
         ],
       },
@@ -125,13 +139,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: `Stoicism`,
+        short_name: `Stoicism`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `content/assets/gatsby-icon.png`,
+        icon: `content/assets/onigiri.png`,
       },
     },
     `gatsby-plugin-offline`,
