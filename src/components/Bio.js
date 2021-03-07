@@ -30,9 +30,7 @@ function Bio() {
             <p>
               Written by <strong>{author}</strong>
               {` `}
-              <a href={`https://twitter.com/${social.twitter}`}>
-                @euro_s
-              </a>
+              <a href={`https://twitter.com/${social.twitter}`}>@euro_s</a>
             </p>
           </div>
         )

@@ -12,7 +12,7 @@ class BlogPostTemplate extends React.Component {
     const post = this.props.data.mdx
     const siteTitle = this.props.data.site.siteMetadata.title
     const { previous, next } = this.props.pageContext
-    console.log(this.props.pageContext)
+    console.log(this.props.location)
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -20,13 +20,21 @@ class BlogPostTemplate extends React.Component {
         <h1>{post.frontmatter.title}</h1>
         <p
           style={{
-            ...scale(-1 / 5),
+            ...scale(1 / 5),
             display: `block`,
             marginBottom: rhythm(1),
-            marginTop: rhythm(-1),
+            marginTop: rhythm(1),
           }}
         >
-          {post.frontmatter.date}
+          {post.frontmatter.date}{' '}
+          {post.frontmatter.tags.map(tag => {
+            const link = `/tags/` + tag
+            return (
+              <Link to={link} style={{ marginRight: 5 }}>
+                #{tag}
+              </Link>
+            )
+          })}
         </p>
         <MDXRenderer>{post.body}</MDXRenderer>
         <hr
@@ -81,6 +89,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "YYYY/MM/DD")
+        tags
       }
       body
     }
