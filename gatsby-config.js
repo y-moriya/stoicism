@@ -17,20 +17,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-external-links`,
-            options: {
-              target: `_blank`,
-              rel: `noopener`,
-            },
-          },
-        ]
-      }
-    },
-    {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content/assets`,
@@ -62,11 +48,13 @@ module.exports = {
           {
             resolve: `gatsby-remark-copy-linked-files`,
           },
-
           {
             resolve: `gatsby-remark-smartypants`,
           },
         ],
+        remarkPlugins: [
+          require(`remark-external-links`),
+        ]
       },
     },
     `gatsby-transformer-sharp`,
