@@ -1,36 +1,47 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
+import Layout from '../components/Layout'
+import { rhythm } from '../utils/typography'
 
 // Components
-import { Link, graphql } from "gatsby"
+import { Link, graphql } from 'gatsby'
 
-const Tags = ({ pageContext, data }) => {
-  const { tag } = pageContext
-  const { edges, totalCount } = data.allMdx
-  const tagHeader = `${totalCount} post${
-    totalCount === 1 ? "" : "s"
-  } tagged with "${tag}"`
+class TagsTemplate extends React.Component {
+  render() {
+    const { tag } = this.props.pageContext
+    const { edges, totalCount } = this.props.data.allMdx
+    const tagHeader = `${totalCount} post${
+      totalCount === 1 ? '' : 's'
+    } tagged with "${tag}"`
+    const siteTitle = this.props.data.site.siteMetadata.title
 
-  return (
-    <div>
-      <h1>{tagHeader}</h1>
-      <ul>
-        {edges.map(({ node }) => {
-          const { slug } = node.fields
-          const { title } = node.frontmatter
-          return (
-            <li key={slug}>
-              <Link to={slug}>{title}</Link>
-            </li>
-          )
-        })}
-      </ul>
-      <Link to="/tags">All tags</Link>
-    </div>
-  )
+    return (
+      <Layout location={this.props.location} title={siteTitle}>
+        <h1>{tagHeader}</h1>
+        <ul>
+          {edges.map(({ node }) => {
+            const { slug } = node.fields
+            const { title } = node.frontmatter
+            return (
+              <li key={slug}>
+                <Link to={slug}>{title}</Link>{' '}
+                <small>({node.frontmatter.date})</small>
+              </li>
+            )
+          })}
+        </ul>
+        <Link to="/tags">All tags</Link>
+        <hr
+          style={{
+            margin: rhythm(1),
+          }}
+        />
+      </Layout>
+    )
+  }
 }
 
-Tags.propTypes = {
+TagsTemplate.propTypes = {
   pageContext: PropTypes.shape({
     tag: PropTypes.string.isRequired,
   }),
@@ -53,10 +64,15 @@ Tags.propTypes = {
   }),
 }
 
-export default Tags
+export default TagsTemplate
 
 export const pageQuery = graphql`
   query($tag: String) {
+    site {
+      siteMetadata {
+        title
+      }
+    }
     allMdx(
       limit: 1000
       sort: { fields: [frontmatter___date], order: DESC }
@@ -70,6 +86,7 @@ export const pageQuery = graphql`
           }
           frontmatter {
             title
+            date(formatString: "YYYY/MM/DD")
           }
         }
       }

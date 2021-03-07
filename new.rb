@@ -12,5 +12,5 @@ end
 dir = "content/blog/" + datestr + "_" + title
 Dir.mkdir(dir) unless Dir.exists?(dir)
 f = File.open(dir+"/index.mdx", "w+")
-f.puts("---\ntitle: #{title}\ndate: #{now.to_s}\n---")
+f.puts("---\ntitle: #{title}\ndate: #{now.to_s}\ntags: [\"\"]\n---")
 f.close
