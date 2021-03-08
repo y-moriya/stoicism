@@ -25,7 +25,7 @@ class BlogIndex extends React.Component {
         <Link
           to="/"
           style={{
-            margin: rhythm(1),
+            margin: rhythm(0.3),
             boxShadow: `none`,
           }}
         >
@@ -34,7 +34,7 @@ class BlogIndex extends React.Component {
         <Link
           to="/about"
           style={{
-            margin: rhythm(1),
+            margin: rhythm(0.3),
             boxShadow: `none`,
           }}
         >
@@ -43,7 +43,7 @@ class BlogIndex extends React.Component {
         <Link
           to="/tags"
           style={{
-            margin: rhythm(1),
+            margin: rhythm(0.3),
             boxShadow: `none`,
           }}
         >
@@ -52,7 +52,7 @@ class BlogIndex extends React.Component {
         <Link
           to="/archives"
           style={{
-            margin: rhythm(1),
+            margin: rhythm(0.3),
             boxShadow: `none`,
           }}
         >
