@@ -1,8 +1,8 @@
 import React from 'react'
 
 import Layout from '../components/Layout'
+import { graphql } from 'gatsby'
 import SEO from '../components/seo'
-import Bio from '../components/Bio'
 
 class About extends React.Component {
   render() {

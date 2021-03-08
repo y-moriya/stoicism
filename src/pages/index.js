@@ -49,6 +49,15 @@ class BlogIndex extends React.Component {
         >
           Tags
         </Link>
+        <Link
+          to="/archives"
+          style={{
+            margin: rhythm(1),
+            boxShadow: `none`,
+          }}
+        >
+          Archives
+        </Link>
         <hr
           style={{
             marginTop: rhythm(1),

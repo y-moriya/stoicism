@@ -7,6 +7,8 @@ exports.createPages = ({ graphql, actions }) => {
 
   const blogPost = path.resolve(`./src/templates/blog-post.js`)
   const tagTemplate = path.resolve("src/templates/tags.js")
+  const periodTemplate = path.resolve("src/templates/period-summary.js")
+  const archiveTemplate = path.resolve("src/templates/archives.js")
   return graphql(
     `
       {
@@ -23,6 +25,8 @@ exports.createPages = ({ graphql, actions }) => {
               frontmatter {
                 title
                 tags
+                year: date(formatString: "YYYY")
+                month: date(formatString: "MM")
               }
               body
             }
@@ -43,6 +47,9 @@ exports.createPages = ({ graphql, actions }) => {
     // Create blog posts pages.
     const posts = result.data.allMdx.edges
 
+    const years = new Set()
+    const yearMonths = new Set()
+
     posts.forEach((post, index) => {
       const previous = index === posts.length - 1 ? null : posts[index + 1].node
       const next = index === 0 ? null : posts[index - 1].node
@@ -56,6 +63,10 @@ exports.createPages = ({ graphql, actions }) => {
           next,
         },
       })
+
+      const { year, month } = post.node.frontmatter
+      years.add(year)
+      yearMonths.add(`${year}/${month}`)
     })
     
     // Extract tag data from query
@@ -69,6 +80,46 @@ exports.createPages = ({ graphql, actions }) => {
           tag: tag.fieldValue,
         },
       })
+    })
+
+    years.forEach(year => {
+      createPage({
+        path: `/${year}/`,
+        component: periodTemplate,
+        context: {
+          displayYear: year,
+          periodStartDate: `${year}-01-01T00:00:00.000Z`,
+          periodEndDate: `${year}-12-31T23:59:59.999Z`
+        }
+      })
+    })
+
+    yearMonths.forEach(yearMonth => {
+      const [year, month] = yearMonth.split('/')
+      const startDate = `${year}-${month}-01T00:00:00.000Z`
+      const newStartDate = new Date(startDate)
+      const endDate = new Date(
+        new Date(newStartDate.setMonth(newStartDate.getMonth() + 1)).getTime() - 1
+      ).toISOString()
+
+      createPage({
+        path: `/${year}/${month}/`,
+        component: periodTemplate,
+        context: {
+          displayYear: year,
+          displayMonth: month,
+          periodStartDate: startDate,
+          periodEndDate: endDate
+        }
+      })
+    })
+
+    createPage({
+      path: "/archives/",
+      component: archiveTemplate,
+      context: {
+        yearMonths: Array.from(yearMonths)
+      }
     })
   })
 }
