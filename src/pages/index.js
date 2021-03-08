@@ -22,18 +22,33 @@ class BlogIndex extends React.Component {
             marginBottom: rhythm(1),
           }}
         />
-        <Link to="/" style={{
-          margin: rhythm(1),
-          boxShadow: `none`
-        }}>TOP</Link>
-        <Link to="/about" style={{
-          margin: rhythm(1),
-          boxShadow: `none`,
-        }}>About</Link>
-        <Link to="/tags" style={{
-          margin: rhythm(1),
-          boxShadow: `none`,
-        }}>Tags</Link>
+        <Link
+          to="/"
+          style={{
+            margin: rhythm(1),
+            boxShadow: `none`,
+          }}
+        >
+          TOP
+        </Link>
+        <Link
+          to="/about"
+          style={{
+            margin: rhythm(1),
+            boxShadow: `none`,
+          }}
+        >
+          About
+        </Link>
+        <Link
+          to="/tags"
+          style={{
+            margin: rhythm(1),
+            boxShadow: `none`,
+          }}
+        >
+          Tags
+        </Link>
         <hr
           style={{
             marginTop: rhythm(1),
@@ -57,7 +72,10 @@ class BlogIndex extends React.Component {
               {node.frontmatter.tags.map(tag => {
                 return (
                   <small>
-                    <Link to={`/tags/${kebabCase(tag)}/`} style={{ marginRight: 5 }}>
+                    <Link
+                      to={`/tags/${kebabCase(tag)}/`}
+                      style={{ marginRight: 5 }}
+                    >
                       #{tag}
                     </Link>
                   </small>

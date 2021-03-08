@@ -32,9 +32,9 @@ class BlogPostTemplate extends React.Component {
           {post.frontmatter.date}{' '}
           {post.frontmatter.tags.map(tag => {
             return (
-                <Link to={`/tags/${kebabCase(tag)}/`} style={{ marginRight: 5 }}>
-                  #{tag}
-                </Link>
+              <Link to={`/tags/${kebabCase(tag)}/`} style={{ marginRight: 5 }}>
+                #{tag}
+              </Link>
             )
           })}
         </p>
