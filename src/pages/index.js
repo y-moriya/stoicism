@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 
-import Bio from '../components/Bio'
+// Utilities
+import kebabCase from 'lodash/kebabCase'
+
 import Layout from '../components/Layout'
 import SEO from '../components/seo'
 import { rhythm } from '../utils/typography'
@@ -15,7 +17,29 @@ class BlogIndex extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title="Top" keywords={[`blog`, `gatsby`, `javascript`, `react`]} />
-        <Bio />
+        <hr
+          style={{
+            marginBottom: rhythm(1),
+          }}
+        />
+        <Link to="/" style={{
+          margin: rhythm(1),
+          boxShadow: `none`
+        }}>TOP</Link>
+        <Link to="/about" style={{
+          margin: rhythm(1),
+          boxShadow: `none`,
+        }}>About</Link>
+        <Link to="/tags" style={{
+          margin: rhythm(1),
+          boxShadow: `none`,
+        }}>Tags</Link>
+        <hr
+          style={{
+            marginTop: rhythm(1),
+            marginBottom: rhythm(1),
+          }}
+        />
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug
           return (
@@ -29,7 +53,16 @@ class BlogIndex extends React.Component {
                   {title}
                 </Link>
               </h3>
-              <small>{node.frontmatter.date}</small>
+              <small>{node.frontmatter.date}</small>{' '}
+              {node.frontmatter.tags.map(tag => {
+                return (
+                  <small>
+                    <Link to={`/tags/${kebabCase(tag)}/`} style={{ marginRight: 5 }}>
+                      #{tag}
+                    </Link>
+                  </small>
+                )
+              })}
               <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
             </div>
           )
@@ -58,6 +91,7 @@ export const pageQuery = graphql`
           frontmatter {
             date(formatString: "YYYY/MM/DD")
             title
+            tags
           }
         }
       }

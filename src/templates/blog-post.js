@@ -2,6 +2,9 @@ import React from 'react'
 import { Link, graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 
+// Utilities
+import kebabCase from 'lodash/kebabCase'
+
 import Bio from '../components/Bio'
 import Layout from '../components/Layout'
 import SEO from '../components/seo'
@@ -28,11 +31,10 @@ class BlogPostTemplate extends React.Component {
         >
           {post.frontmatter.date}{' '}
           {post.frontmatter.tags.map(tag => {
-            const link = `/tags/` + tag
             return (
-              <Link to={link} style={{ marginRight: 5 }}>
-                #{tag}
-              </Link>
+                <Link to={`/tags/${kebabCase(tag)}/`} style={{ marginRight: 5 }}>
+                  #{tag}
+                </Link>
             )
           })}
         </p>
