@@ -5,7 +5,6 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 // Utilities
 import kebabCase from 'lodash/kebabCase'
 
-import Bio from '../components/Bio'
 import Layout from '../components/Layout'
 import SEO from '../components/seo'
 import { rhythm, scale } from '../utils/typography'
@@ -44,7 +43,6 @@ class BlogPostTemplate extends React.Component {
             marginBottom: rhythm(1),
           }}
         />
-        <Bio />
 
         <ul
           style={{
@@ -70,6 +68,13 @@ class BlogPostTemplate extends React.Component {
             )}
           </li>
         </ul>
+        <Link to="/">Return to Top</Link>
+        <hr
+          style={{
+            marginTop: rhythm(1),
+            marginBottom: rhythm(1),
+          }}
+        />
       </Layout>
     )
   }

@@ -3,6 +3,7 @@ import React from 'react'
 import Layout from '../components/Layout'
 import { graphql } from 'gatsby'
 import SEO from '../components/seo'
+import Bio from '../components/Bio'
 
 class About extends React.Component {
   render() {
@@ -13,6 +14,7 @@ class About extends React.Component {
         <h1>About</h1>
         <h2>このサイトについて</h2>
         <p>主に阪神タイガースの試合観戦記を書こうと思ってます。</p>
+        <Bio />
       </Layout>
     )
   }

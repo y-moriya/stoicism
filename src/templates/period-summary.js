@@ -37,7 +37,8 @@ class PeriodSummary extends React.Component {
         <Link to="/archives">Return to Archives</Link>
         <hr
           style={{
-            margin: rhythm(1),
+            marginTop: rhythm(1),
+            marginBottom: rhythm(1),
           }}
         />
       </Layout>

@@ -35,7 +35,8 @@ class TagsTemplate extends React.Component {
         <Link to="/tags">All tags</Link>
         <hr
           style={{
-            margin: rhythm(1),
+            marginTop: rhythm(1),
+            marginBottom: rhythm(1),
           }}
         />
       </Layout>
