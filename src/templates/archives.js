@@ -1,6 +1,7 @@
 import Layout from '../components/Layout'
 import React from 'react'
 import { Link, graphql } from 'gatsby'
+import SEO from '../components/seo'
 
 class Archives extends React.Component {
   render() {
@@ -10,6 +11,7 @@ class Archives extends React.Component {
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
+        <SEO title="Archives" />
         <h1>Archives</h1>
         <ul>
           {yearMonths.map(yearMonth => {

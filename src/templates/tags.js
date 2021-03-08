@@ -5,6 +5,7 @@ import { rhythm } from '../utils/typography'
 
 // Components
 import { Link, graphql } from 'gatsby'
+import SEO from '../components/seo'
 
 class TagsTemplate extends React.Component {
   render() {
@@ -17,6 +18,7 @@ class TagsTemplate extends React.Component {
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
+        <SEO title={`Tag - ${tag}`} />
         <h1>{tagHeader}</h1>
         <ul>
           {edges.map(({ node }) => {

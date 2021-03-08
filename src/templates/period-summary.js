@@ -2,6 +2,7 @@ import Layout from '../components/Layout'
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import { rhythm } from '../utils/typography'
+import SEO from '../components/seo'
 
 class PeriodSummary extends React.Component {
   render() {
@@ -15,6 +16,9 @@ class PeriodSummary extends React.Component {
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
+        <SEO
+          title={`${displayYear}年${displayMonthStr}の記事 (${totalCount})`}
+        />
         <h1>
           {displayYear}年{displayMonthStr}の記事 ({totalCount})
         </h1>

@@ -6,7 +6,7 @@ import Layout from '../components/Layout'
 import kebabCase from 'lodash/kebabCase'
 
 // Components
-import { Helmet } from 'react-helmet'
+import SEO from '../components/seo'
 import { Link, graphql } from 'gatsby'
 
 class TagsPage extends React.Component {
@@ -15,7 +15,7 @@ class TagsPage extends React.Component {
     const siteTitle = this.props.data.site.siteMetadata.title
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <Helmet title={siteTitle} />
+        <SEO title="Tags" />
         <div>
           <h1>Tags</h1>
           <ul>
