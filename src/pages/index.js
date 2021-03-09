@@ -29,7 +29,7 @@ class BlogIndex extends React.Component {
             boxShadow: `none`,
           }}
         >
-          TOP
+          Top
         </Link>
         <Link
           to="/about"
