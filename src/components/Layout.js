@@ -3,13 +3,23 @@ import { Link } from 'gatsby'
 
 import { rhythm, scale } from '../utils/typography'
 
+const isIndex = path => {
+  const rootPath = `${__PATH_PREFIX__}/`
+  if (path == rootPath) {
+    return true
+  } else if (path.match(/\/page\/\d+/)) {
+    return true
+  } else {
+    return false
+  }
+}
+
 class Layout extends React.Component {
   render() {
     const { location, title, children } = this.props
-    const rootPath = `${__PATH_PREFIX__}/`
     let header
 
-    if (location.pathname === rootPath) {
+    if (isIndex(location.pathname)) {
       header = (
         <h1
           style={{
@@ -66,7 +76,9 @@ class Layout extends React.Component {
         <footer>
           © {new Date().getFullYear()}, Built with
           {` `}
-          <a href="https://www.gatsbyjs.org" target="_blank" rel="noopener">Gatsby</a>
+          <a href="https://www.gatsbyjs.org" target="_blank" rel="noopener">
+            Gatsby
+          </a>
         </footer>
       </div>
     )

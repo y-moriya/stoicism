@@ -6,7 +6,34 @@ import kebabCase from 'lodash/kebabCase'
 
 import Layout from '../components/Layout'
 import SEO from '../components/seo'
+import Header from '../components/Header'
 import { rhythm } from '../utils/typography'
+
+const Paginate = ({ previousPagePath, nextPagePath }) => {
+  return (
+    <div
+      style={{
+        padding: rhythm(1 / 2),
+        justifyContent: 'space-evenly',
+        width: '100%',
+        display: 'flex',
+        fontWeight: 'bold',
+        fontSize: rhythm(4 / 5),
+      }}
+    >
+      {previousPagePath && (
+        <Link to={previousPagePath} style={{ boxShadow: 'none' }}>
+          ≪ New
+        </Link>
+      )}
+      {nextPagePath && (
+        <Link to={nextPagePath} style={{ boxShadow: 'none' }}>
+          Old ≫
+        </Link>
+      )}
+    </div>
+  )
+}
 
 class BlogIndex extends React.Component {
   render() {
@@ -17,53 +44,7 @@ class BlogIndex extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title="Top" keywords={[`blog`, `gatsby`, `javascript`, `react`]} />
-        <hr
-          style={{
-            marginBottom: rhythm(1),
-          }}
-        />
-        <Link
-          to="/"
-          style={{
-            margin: rhythm(0.3),
-            boxShadow: `none`,
-          }}
-        >
-          Top
-        </Link>
-        <Link
-          to="/about"
-          style={{
-            margin: rhythm(0.3),
-            boxShadow: `none`,
-          }}
-        >
-          About
-        </Link>
-        <Link
-          to="/tags"
-          style={{
-            margin: rhythm(0.3),
-            boxShadow: `none`,
-          }}
-        >
-          Tags
-        </Link>
-        <Link
-          to="/archives"
-          style={{
-            margin: rhythm(0.3),
-            boxShadow: `none`,
-          }}
-        >
-          Archives
-        </Link>
-        <hr
-          style={{
-            marginTop: rhythm(1),
-            marginBottom: rhythm(1),
-          }}
-        />
+        <Header />
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug
           return (
@@ -94,6 +75,7 @@ class BlogIndex extends React.Component {
             </div>
           )
         })}
+        <Paginate {...this.props.pageContext} />
       </Layout>
     )
   }
@@ -102,13 +84,17 @@ class BlogIndex extends React.Component {
 export default BlogIndex
 
 export const pageQuery = graphql`
-  query {
+  query($skip: Int!, $limit: Int!) {
     site {
       siteMetadata {
         title
       }
     }
-    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(
+      sort: { fields: [frontmatter___date], order: DESC }
+      skip: $skip
+      limit: $limit
+    ) {
       edges {
         node {
           excerpt(truncate: true)
