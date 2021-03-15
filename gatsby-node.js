@@ -1,6 +1,7 @@
 const path = require(`path`)
 const _ = require("lodash")
 const { createFilePath } = require(`gatsby-source-filesystem`)
+const { paginate } = require("gatsby-awesome-pagination")
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -9,9 +10,19 @@ exports.createPages = ({ graphql, actions }) => {
   const tagTemplate = path.resolve("src/templates/tags.js")
   const periodTemplate = path.resolve("src/templates/period-summary.js")
   const archiveTemplate = path.resolve("src/templates/archives.js")
+  const indexTemplate = path.resolve("src/templates/index.js")
+
+  const buildPaginate = posts => {
+    paginate({
+      createPage,
+      items: posts,
+      itemsPerPage: 10,
+      pathPrefix: ({ pageNumber }) => (pageNumber === 0 ? "/" : "/page"),
+      component: indexTemplate
+    })
+  }
   return graphql(
-    `
-      {
+    ` {
         allMdx(
           sort: { fields: [frontmatter___date], order: DESC }
           limit: 1000
@@ -46,6 +57,7 @@ exports.createPages = ({ graphql, actions }) => {
 
     // Create blog posts pages.
     const posts = result.data.allMdx.edges
+    buildPaginate(posts)
 
     const years = new Set()
     const yearMonths = new Set()

@@ -16,7 +16,17 @@ class About extends React.Component {
         <p>主に阪神タイガースの試合観戦記を書こうと思ってます。</p>
         <h2>情報</h2>
         <p>このブログは Gatsby を使って Vercel にデプロイされています。</p>
-        <p>ソースコードは <a href="https://github.com/y-moriya/stoicism" target="_blank" rel="noopener">https://github.com/y-moriya/stoicism</a> で公開されています。</p>
+        <p>
+          ソースコードは{' '}
+          <a
+            href="https://github.com/y-moriya/stoicism"
+            target="_blank"
+            rel="noopener"
+          >
+            https://github.com/y-moriya/stoicism
+          </a>{' '}
+          で公開されています。
+        </p>
         <Bio />
       </Layout>
     )
