@@ -3,7 +3,7 @@ import { Link } from 'gatsby'
 
 import { rhythm, scale } from '../utils/typography'
 
-const isIndex = path => {
+const isIndex = (path) => {
   const rootPath = `${__PATH_PREFIX__}/`
   if (path == rootPath) {
     return true
