@@ -59,7 +59,7 @@ class BlogIndex extends React.Component {
                 </Link>
               </h3>
               <small>{node.frontmatter.date}</small>{' '}
-              {node.frontmatter.tags.map(tag => {
+              {node.frontmatter.tags.map((tag) => {
                 return (
                   <small>
                     <Link

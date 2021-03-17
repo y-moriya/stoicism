@@ -14,7 +14,7 @@ class Archives extends React.Component {
         <SEO title="Archives" />
         <h1>Archives</h1>
         <ul>
-          {yearMonths.map(yearMonth => {
+          {yearMonths.map((yearMonth) => {
             const [year, month] = yearMonth.split('/')
             return (
               <li key={yearMonth}>
