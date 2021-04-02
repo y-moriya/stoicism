@@ -49,7 +49,7 @@ class PeriodSummary extends React.Component {
 export default PeriodSummary
 
 export const query = graphql`
-  query($periodStartDate: Date, $periodEndDate: Date) {
+  query($periodStartDate: Date, $periodEndDate: Date, $path: String!) {
     site {
       siteMetadata {
         title
@@ -75,5 +75,6 @@ export const query = graphql`
         }
       }
     }
+    _: contextChangeNotInvalidingQueryWorkaround(path: $path)
   }
 `
