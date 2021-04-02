@@ -3,6 +3,38 @@ const _ = require("lodash")
 const { createFilePath } = require(`gatsby-source-filesystem`)
 const { paginate } = require("gatsby-awesome-pagination")
 
+exports.createResolvers = ({ createResolvers }) => {
+  createResolvers({
+    Query: {
+      contextChangeNotInvalidingQueryWorkaround: {
+        type: `JSON`, // type actually doesn't matter - we will return/resolve `null` anyway
+        args: {
+          path: {
+            type: `String!`,
+          },
+        },
+        resolve: async (_source, args, context) => {
+          // Lookup SitePage node for current page.
+          // This will register SitePage node as dependency of the query.
+          // Changing context does change SitePage, so it will invalidate
+          // query result properly.
+          await context.nodeModel.runQuery({
+            query: {
+              filter: {
+                path: { eq: args.path },
+              },
+            },
+            type: `SitePage`,
+            firstOnly: true,
+          })
+
+          return null
+        },
+      },
+    },
+  })
+}
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 

@@ -33,11 +33,12 @@ class Archives extends React.Component {
 export default Archives
 
 export const query = graphql`
-  query {
+  query($path: String!) {
     site {
       siteMetadata {
         title
       }
     }
+    _: contextChangeNotInvalidingQueryWorkaround(path: $path)
   }
 `
