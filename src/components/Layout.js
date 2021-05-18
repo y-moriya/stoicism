@@ -74,18 +74,20 @@ class Layout extends React.Component {
         {header}
         {children}
         <footer>
-          <span>Page views this blog</span>
+          <h5>Page views this blog</h5>
           <iframe
-            src="https://pixe.la/v1/users/euro/graphs/page-views.html?mode=simple"
+            src="https://pixe.la/v1/users/euro/graphs/page-views.html?mode=simple-short"
             height="155"
-            width="630"
+            width="220"
             frameborder="0"
           ></iframe>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org" target="_blank" rel="noopener">
-            Gatsby
-          </a>
+          <div>
+            © {new Date().getFullYear()}, Built with
+            {` `}
+            <a href="https://www.gatsbyjs.org" target="_blank" rel="noopener">
+              Gatsby
+            </a>
+          </div>
         </footer>
       </div>
     )
