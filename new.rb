@@ -51,6 +51,8 @@ f = File.open(filename, "w+")
 f.puts("---\ntitle: #{title}\ndate: #{now.to_s}\ntags: [\"野球\"]\n---\n\n#{h2}\n\n#{href}\n\n")
 f.close
 
+system("git add #{filename}")
+
 puts "投稿テンプレート作成成功"
 
 system("code #{filename}")
