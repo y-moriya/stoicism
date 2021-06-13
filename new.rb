@@ -45,14 +45,18 @@ title = %Q(#{titledate} #{home}VS#{away})
 h2 = %Q(## #{home} #{home_score} - #{away_score} #{away})
 
 dir = "content/blog/" + datestr + "_" + teams[home] + teams[away]
-Dir.mkdir(dir) unless Dir.exists?(dir)
-filename = dir+"/index.mdx"
-f = File.open(filename, "w+")
-f.puts("---\ntitle: #{title}\ndate: #{now.to_s}\ntags: [\"野球\"]\n---\n\n#{h2}\n\n#{href}\n\n")
-f.close
+unless Dir.exists?(dir)
+  Dir.mkdir(dir) 
+  filename = dir+"/index.mdx"
+  f = File.open(filename, "w+")
+  f.puts("---\ntitle: #{title}\ndate: #{now.to_s}\ntags: [\"野球\"]\n---\n\n#{h2}\n\n#{href}\n\n")
+  f.close
 
-system("git add #{filename}")
+  system("git add #{filename}")
 
-puts "投稿テンプレート作成成功"
+  puts "投稿テンプレート作成成功"
 
-system("code #{filename}")
+  system("code #{filename}")
+else
+  puts "記事作成済みです"
+end
