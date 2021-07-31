@@ -26,6 +26,12 @@ end
 page = Nokogiri::HTML.parse(html, nil, charset)
 contents = page.search('.bb-score__content')
 game = contents.select{|c| /阪神/.match(c)}[0]
+
+if !game
+  puts "今日は試合がありません。"
+  return
+end
+
 href = game[:href]
 home = game.search('.bb-score__homeLogo').text
 away = game.search('.bb-score__awayLogo').text
