@@ -48,6 +48,7 @@ now = DateTime.now
 datestr = now.strftime("%Y-%m-%d")
 titledate = now.strftime("%Y/%m/%d")
 title = %Q(#{titledate} #{home}VS#{away})
+og_title = %Q(#{home} #{home_score} - #{away_score} #{away})
 h2 = %Q(## #{home} #{home_score} - #{away_score} #{away})
 
 dir = "content/blog/" + datestr + "_" + teams[home] + teams[away]
@@ -55,7 +56,7 @@ unless Dir.exists?(dir)
   Dir.mkdir(dir) 
   filename = dir+"/index.mdx"
   f = File.open(filename, "w+")
-  f.puts("---\ntitle: #{title}\ndate: #{now.to_s}\ntags: [\"野球\"]\n---\n\n#{h2}\n\n#{href}\n\n")
+  f.puts("---\ntitle: #{title}\ndate: #{now.to_s}\ntags: [\"野球\"]\nog_title: #{og_title}\n---\n\n#{h2}\n\n#{href}\n\n")
   f.close
 
   system("git add #{filename}")
