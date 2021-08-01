@@ -63,6 +63,52 @@ module.exports = {
           {
             resolve: `gatsby-remark-smartypants`,
           },
+          {
+            resolve: require.resolve('./plugins/gatsby-remark-og-image'),
+            options: {
+              output: {
+                directory: '',
+                fileName: 'thumbnail.png'
+              },
+              image: {
+                width: 1200,
+                height: 630,
+                // backgroundImage: './src/assets/images/og-background.jpg'
+                backgroundColor: '#ddeae2',
+              },
+              style: {
+                title: {
+                  fontFamily: 'Noto Sans JP',
+                  fontColor: '#333333',
+                  fontWeight: 'Bold',
+                  fontSize: 82,
+                  paddingTop: 100,
+                  paddingBottom: 200,
+                  paddingLeft: 150,
+                  paddingRight: 150,
+                },
+                author: {
+                  fontFamily: 'Noto Sans JP',
+                  fontColor: '#333333',
+                  fontWeight: 'Bold',
+                  fontSize: 42,
+                }
+              },
+              meta: {
+                title: '',
+                author: ''
+              },
+              fontFile: [
+                {
+                  path: require.resolve('./src/assets/fonts/NotoSansJP-Bold.otf'),
+                  family: 'Noto Sans JP',
+                  weight: 'bold',
+                },
+              ],
+              iconFile: require.resolve('./src/assets/images/blank_1x1.png'),
+              timeout: 10000,
+            },
+          },
         ],
         remarkPlugins: [
           require(`remark-external-links`),

@@ -14,11 +14,11 @@ class BlogPostTemplate extends React.Component {
     const post = this.props.data.mdx
     const siteTitle = this.props.data.site.siteMetadata.title
     const { previous, next } = this.props.pageContext
-    console.log(this.props.location)
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO title={post.frontmatter.title} description={post.excerpt} />
+        <SEO title={post.frontmatter.title} description={post.excerpt}
+          image={`${this.props.data.site.siteMetadata.siteUrl}${this.props.location.pathname}thumbnail.png`} />
         <h1>{post.frontmatter.title}</h1>
         <p
           style={{
@@ -88,6 +88,7 @@ export const pageQuery = graphql`
       siteMetadata {
         title
         author
+        siteUrl
       }
     }
     mdx(fields: { slug: { eq: $slug } }) {
