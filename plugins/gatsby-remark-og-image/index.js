@@ -1,6 +1,7 @@
 // plugins/gatsby-remark-og-image/index.js
 
 const catchy = require('catchy-image')
+const { siteMetadata } = require('../../gatsby-config')
 
 module.exports = async ({ markdownNode }, pluginOptions) => {
   // gatsby-config.jsの設定情報とマークダウンのメタデータを画像生成ライブラリの引数に渡す

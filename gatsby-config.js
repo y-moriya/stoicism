@@ -84,7 +84,7 @@ module.exports = {
                   fontSize: 82,
                   paddingTop: 100,
                   paddingBottom: 200,
-                  paddingLeft: 150,
+                  paddingLeft: 300,
                   paddingRight: 150,
                 },
                 author: {
@@ -105,7 +105,7 @@ module.exports = {
                   weight: 'bold',
                 },
               ],
-              iconFile: require.resolve('./src/assets/images/blank_1x1.png'),
+              iconFile: require.resolve('./src/assets/images/blank_100x100.png'),
               timeout: 10000,
             },
           },
