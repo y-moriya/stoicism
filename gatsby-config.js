@@ -91,7 +91,7 @@ module.exports = {
                   fontFamily: 'Noto Sans JP',
                   fontColor: '#333333',
                   fontWeight: 'Bold',
-                  fontSize: 42,
+                  fontSize: 32,
                 }
               },
               meta: {
