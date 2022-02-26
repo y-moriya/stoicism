@@ -47,7 +47,7 @@ end
 now = DateTime.now
 datestr = now.strftime("%Y-%m-%d")
 titledate = now.strftime("%Y/%m/%d")
-title = %Q(#{titledate} #{home}VS#{away})
+title = %Q(#{titledate} #{home}VS#{away} #阪神タイガース)
 og_title = %Q(#{home} #{home_score} - #{away_score} #{away})
 h2 = %Q(## #{home} #{home_score} - #{away_score} #{away})
 
