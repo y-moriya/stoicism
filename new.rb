@@ -48,7 +48,7 @@ now = DateTime.now
 datestr = now.strftime("%Y-%m-%d")
 titledate = now.strftime("%Y/%m/%d")
 openstr = now < DateTime.parse('2022/03/24') ? '（オープン戦）' : ''
-title = %Q(#{titledate} #{home}VS#{away}#{openstr}#阪神タイガース)
+title = %Q(#{titledate} #{home}VS#{away}#{openstr} #阪神タイガース)
 og_title = %Q(#{home} #{home_score} - #{away_score} #{away})
 h2 = %Q(## #{home} #{home_score} - #{away_score} #{away})
 
