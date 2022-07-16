@@ -10,8 +10,12 @@ Dir.glob('../content/blog/2021*').each do |dir|
   date = "2021/#{$1}#{$2}"
   url = urls.find{|u| u.include?(date)}
   if url
+    File.open("#{dir}/index.mdx", 'r') do |f|
+      buffer = f.read
+    end
+    buffer.sub!(/https.+/, url)
     File.open("#{dir}/index.mdx", 'w') do |f|
-      f.sub(/https.+/, url)
+      f.write(buffer)
     end
   end
 end
