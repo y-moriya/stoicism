@@ -106,7 +106,7 @@ module.exports = {
                 },
               ],
               iconFile: require.resolve('./src/assets/images/blank_100x100.png'),
-              timeout: 10000,
+              timeout: 30000,
             },
           },
         ],
